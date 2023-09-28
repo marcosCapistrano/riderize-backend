@@ -25,6 +25,5 @@ export class UserResolver {
             throw new Error(`Unable to fetch users`);
         }
     }
-
     // Implement other resolver functions as needed
 }
