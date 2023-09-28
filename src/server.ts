@@ -8,10 +8,10 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { buildSchema, buildSchemaSync } from "type-graphql";
-import { resolvers } from "@generated/type-graphql";
 import { PrismaClient } from "@prisma/client";
 import prisma from './prisma.ts';
-import { UserResolver } from "./resolvers/User.ts";
+import { UserResolver } from "./resolvers/UserResolver.ts";
+import { RideResolver } from "./resolvers/RideResolver.ts";
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -21,7 +21,7 @@ export interface Context {
 }
 
 const schema = buildSchemaSync({
-  resolvers: [UserResolver],
+  resolvers: [UserResolver, RideResolver],
 })
 
 const server = new ApolloServer({
